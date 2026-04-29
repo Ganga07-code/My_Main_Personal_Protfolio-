@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myla Gangadhar - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- React and Babel CDNs -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress"></div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="cyber-loader">
+        <div class="cyber-ring"></div>
+        <div class="cyber-core">
+          <i class="fas fa-shield-alt shield-icon"></i>
+        </div>
+      </div>
+      <h2 class="loading-text" id="glitch-loading">Initializing System</h2>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <p class="loading-percentage">0%</p>
+    </div>
+  </div>
+
+  <!-- Circuit Background Overlay -->
+  <div class="circuit-background"></div>
+
+  <!-- Particle Network Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><span>G</span>angadhar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certificates">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <a href="https://github.com/Ganga07-code" target="_blank" class="btn-secondary ms-3"><i class="fab fa-github"></i>
+          GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- React Root for Hero, Projects, and Skills -->
+  <div id="react-root"></div>
+
+
+
+
+
+  <!-- React Root was here, but moved up to include Hero -->
+
+
+  <!-- CSS for Back to Top Button -->
+  <style>
+    /* ========== BACK TO TOP BUTTON ========== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #06b6d4;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      cursor: pointer;
+      border: 1px solid rgba(6, 182, 212, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+      color: #fff;
+      background: #06b6d4;
+      border-color: #06b6d4;
+    }
+  </style>
+
+  <!-- Back to Top Button -->
+  <a href="#home" class="back-to-top" id="backToTopBtn" title="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <!-- Main React App (In-lined for local CORS compatibility) -->
+  <script type="text/babel">
+const { useState, useEffect } = React;
+
+const Projects = () => {
+    const projectData = [
+        {
+            title: "AI Rock Paper Scissors",
+            summary: "AI-powered hand gesture recognition system that detects and classifies Rock, Paper, and Scissors in real-time using computer vision.",
+            tech: ["Python", "OpenCV", "MediaPipe"],
+            link: "https://github.com/Ganga07-code/AI-Rock-Paper-Scissors-Hand-Gesture",
+            icons: ["fab fa-python", "fas fa-eye", "fas fa-hand-paper"]
+        },
+        {
+            title: "PrivAccess – Zero Knowledge RBAC",
+            summary: "A secure access control system based on Zero-Knowledge Proofs to enable role-based authorization without exposing sensitive data.",
+            tech: ["Cryptography", "ZKP", "Backend"],
+            link: "https://github.com/abhiram-1508/PrivAccess-A-Zero-Knowledge-Framework-for-Role-Based-Access-Control",
+            icons: ["fas fa-lock", "fas fa-shield-alt", "fas fa-server"],
+            details: [
+                "Implements secure authentication without revealing credentials",
+                "Role-based access control system",
+                "Focus on privacy-preserving security architecture"
+            ]
+        },
+        {
+            title: "SRM AP GenAI 2024",
+            summary: "A Generative AI project exploring modern AI techniques for content generation and intelligent applications.",
+            tech: ["Python", "Gen AI", "APIs"],
+            link: "https://github.com/Ganga07-code/srm-ap-genai-2024",
+            icons: ["fab fa-python", "fas fa-brain", "fas fa-plug"],
+            details: [
+                "Hands-on implementation of GenAI concepts",
+                "Practical use of AI models for real-world tasks",
+                "Exposure to cutting-edge AI trends"
+            ]
+        },
+        {
+            title: "Personal Portfolio Website",
+            summary: "A responsive personal portfolio website showcasing projects, skills, and achievements with a clean UI design.",
+            tech: ["HTML5", "CSS3", "JavaScript"],
+            link: "https://github.com/Ganga07-code/My-Portfolio",
+            icons: ["fab fa-html5", "fab fa-css3-alt", "fab fa-js"],
+            details: [
+                "Fully responsive design",
+                "Smooth navigation and modern UI",
+                "Organized project showcase"
+            ]
+        },
+        {
+            title: "Calculator Website",
+            summary: "A functional and responsive calculator web application supporting basic arithmetic operations.",
+            tech: ["HTML5", "CSS3", "JavaScript"],
+            link: "https://github.com/Ganga07-code/Calculator-Website",
+            icons: ["fab fa-html5", "fab fa-css3-alt", "fab fa-js"],
+            details: [
+                "Interactive UI with real-time calculations",
+                "Clean and simple user experience",
+                "Efficient event handling logic"
+            ],
+            centered: true
+        }
+    ];
+
+    return (
+        <section id="projects" className="container">
+            <h2> Projects</h2>
+            <p className="section-tagline">Turning ideas into reality with code and creativity</p>
+
+            <div className="row g-4">
+                {projectData.map((project, index) => (
+                    <div key={index} className={project.centered ? "col-md-6 col-lg-6 mx-auto" : "col-md-6"}>
+                        <div className="project-card visible">
+                            <div className="project-content">
+                                <div className="project-tech-logos">
+                                    {project.tech.map((t, i) => (
+                                        <span key={i} className="tech-badge">
+                                            <i className={project.icons[i]}></i> {t}
+                                        </span>
+                                    ))}
+                                </div>
+                                <h5>{project.title}</h5>
+                                <p className="project-summary">{project.summary}</p>
+                                {project.details && (
+                                    <ul style={{ paddingLeft: '20px', fontSize: '0.9em', textAlign: 'left', color: '#94a3b8' }}>
+                                        {project.details.map((detail, i) => (
+                                            <li key={i}>{detail}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                <div className="project-footer">
+                                    <a href={project.link} className="btn-primary" target="_blank">
+                                        <i className="fab fa-github"></i> GitHub Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+const Skills = () => {
+    const skills = [
+        { name: "Python", icon: "fab fa-python" },
+        { name: "JavaScript", icon: "fab fa-js" },
+        { name: "HTML", icon: "fab fa-html5" },
+        { name: "CSS", icon: "fab fa-css3-alt" },
+        { name: "OpenCV", icon: "fas fa-eye" },
+        { name: "MediaPipe", icon: "fas fa-hand-paper" },
+        { name: "Cryptography", icon: "fas fa-lock" },
+        { name: "Generative AI", icon: "fas fa-brain" },
+        { name: "C / C++", icon: "fas fa-code" }
+    ];
+
+    return (
+        <section id="skills" className="container">
+            <h2> Skills</h2>
+            <p className="section-tagline">Tools and technologies I have mastered along the way</p>
+            <div className="skills-grid">
+                {skills.map((skill, index) => (
+                    <div key={index} className="skill-item visible">
+                        <i className={skill.icon}></i>
+                        <p>{skill.name}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+const useTypewriter = (phrases, speed = 80, pause = 2000) => {
+    const [text, setText] = useState('');
+    const [phraseIndex, setPhraseIndex] = useState(0);
+    const [charIndex, setCharIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        const currentPhrase = phrases[phraseIndex];
+        
+        const timeout = setTimeout(() => {
+            if (!isDeleting) {
+                setText(currentPhrase.substring(0, charIndex + 1));
+                setCharIndex(prev => prev + 1);
+                if (charIndex + 1 === currentPhrase.length) {
+                    setIsDeleting(true);
+                }
+            } else {
+                setText(currentPhrase.substring(0, charIndex - 1));
+                setCharIndex(prev => prev - 1);
+                if (charIndex === 0) {
+                    setIsDeleting(false);
+                    setPhraseIndex((prev) => (prev + 1) % phrases.length);
+                }
+            }
+        }, isDeleting ? speed / 2 : speed);
+
+        if (isDeleting && charIndex === currentPhrase.length) {
+            clearTimeout(timeout);
+            setTimeout(() => setIsDeleting(true), pause);
+        }
+
+        return () => clearTimeout(timeout);
+    }, [charIndex, isDeleting, phraseIndex, phrases, speed, pause]);
+
+    return text;
+};
+
+const Hero = () => {
+    const phrases = [
+        'Passionate Front-End Developer',
+        'Cyber Security Enthusiast',
+        'Problem Solver & Innovator',
+        'Open Source Contributor',
+        'Building Secure Web Experiences'
+    ];
+    const typewriterText = useTypewriter(phrases);
+
+    return (
+        <section id="home" className="hero">
+            <div className="container hero-container">
+                <div className="hero-content">
+                    <h1 className="glitch-name" data-text="Myla Gangadhar">Myla Gangadhar</h1>
+                    <p className="tagline">
+                        <span id="typewriter">{typewriterText}</span>
+                        <span className="cursor-blink">|</span>
+                    </p>
+                    <div className="hero-actions">
+                        <a href="#projects" className="btn-primary">
+                            <i className="fas fa-folder-open"></i> View My Projects
+                        </a>
+                        <a href="#contact" className="btn-secondary">
+                            <i className="fas fa-paper-plane"></i> Get In Touch
+                        </a>
+                    </div>
+                    <div className="scroll-down">
+                        <a href="#education">
+                            <i className="fas fa-chevron-down"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const Education = () => {
+    const educationData = [
+        {
+            degree: "B.Tech. Computer Science Engineering",
+            institution: "SRM Institute of Science and Technology, Andhra Pradesh, India",
+            date: "2023 – 2027",
+            details: "CGPA: 8.34/10 (Till 5th Semester)",
+            icon: "fas fa-university"
+        },
+        {
+            degree: "Intermediate (MPC)",
+            institution: "Narayana Jr. College, Tenali",
+            date: "2021 – 2023",
+            details: "Percentage: 94.9%",
+            icon: "fas fa-school"
+        },
+        {
+            degree: "SSC",
+            institution: "Narayana English Medium School, Tenali",
+            date: "2020 – 2021",
+            details: "Percentage: 100%",
+            icon: "fas fa-school"
+        }
+    ];
+
+    return (
+        <section id="education" className="education">
+            <div className="container">
+                <h2> Education</h2>
+                <p className="section-tagline">My academic background and achievements</p>
+                {educationData.map((edu, index) => (
+                    <div key={index} className="education-card visible">
+                        <h3>{edu.degree}</h3>
+                        <div className="education-meta">
+                            <span><i className={edu.icon}></i> {edu.institution}</span><br />
+                            <span className="education-date"><i className="fas fa-calendar"></i> {edu.date}</span>
+                        </div>
+                        <div className="education-details">
+                            <strong>{edu.details.split(':')[0]}:</strong> {edu.details.split(':')[1]}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+const Experience = () => {
+    const experienceData = [
+        {
+            role: "Web Development Intern",
+            company: "Skill Craft Technology",
+            date: "Jan 2026 – March 2026",
+            details: [
+                "Developing responsive and dynamic web interfaces using HTML5, CSS3, JavaScript, and Bootstrap.",
+                "Designed reusable UI components ensuring cross-browser compatibility and mobile responsiveness.",
+                "Optimized front-end performance and collaborated with backend teams to enhance user experience."
+            ]
+        },
+        {
+            role: "Research Intern",
+            company: "SRM University, Andhra Pradesh",
+            subCompany: "School Of Engineering And Sciences",
+            date: "June 2025 – August 2025",
+            project: "Gen-AI Powered Legal Assistance with Dual LLM Architecture"
+        }
+    ];
+
+    return (
+        <section id="experience" className="container">
+            <h2> Experience</h2>
+            <p className="section-tagline">My professional and academic journey so far</p>
+            <div className="row g-4">
+                {experienceData.map((exp, index) => (
+                    <div key={index} className="col-md-6">
+                        <div className="experience-card visible">
+                            <h3>{exp.role}</h3>
+                            <div className="experience-meta">
+                                <span><i className="fas fa-building"></i> {exp.company}</span><br />
+                                {exp.subCompany && <span><i className="fas fa-graduation-cap"></i> {exp.subCompany}</span>}
+                                {exp.subCompany && <br />}
+                                <span className="experience-date"><i className="fas fa-calendar"></i> {exp.date}</span>
+                            </div>
+                            <div className="experience-project">
+                                {exp.details ? (
+                                    <ul style={{ paddingLeft: '20px', marginBottom: 0, textAlign: 'left' }}>
+                                        {exp.details.map((detail, i) => (
+                                            <li key={i} style={{ marginBottom: i === exp.details.length - 1 ? 0 : '5px' }}>{detail}</li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <>
+                                        <strong>Research Project:</strong><br />
+                                        {exp.project}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+const Certificates = () => {
+    const certs = [
+        { title: "Java SE 17 (Oracle)", desc: "Certified in Java SE 17 Developer skills and concepts.", link: "https://drive.google.com/file/d/1MF-59NsDMdrsDfqyHKi9ISsWQHM0y0TD/view?usp=drivesdk", icon: "fab fa-java" },
+        { title: "Gemini Student Certificate", desc: "Acknowledgment of skills and exploration in generative AI via Gemini.", link: "https://drive.google.com/file/d/1D_Web2Vbnhe2YqezeO-7meT1F4w0zWmN/view?usp=drivesdk", icon: "fas fa-brain" },
+        { title: "Letter of Recommendation (Skill Craft)", desc: "Received LOR for exceptional performance as a Web Development Intern.", link: "https://drive.google.com/file/d/1SAYr-tFgLNjpgxc-0aT4ASHrLLFPMpco/view?usp=drivesdk", icon: "fas fa-file-alt" },
+        { title: "Web Development Certificate (Skill Craft)", desc: "Successfully completed Web Development internship at Skill Craft Technology.", link: "https://drive.google.com/file/d/1tk_Q3U0xOAa7s-5z7JC5G1ODb65I_Ybs/view?usp=drivesdk", icon: "fas fa-laptop-code" },
+        { title: "Adobe Hackathon 2025", desc: "Participated in Adobe Hackathon 2025 (Round 1).", link: "https://drive.google.com/file/d/1up9AK7u351oT8wUyN6ib1zJu1Vd5quqq/view?usp=drivesdk", icon: "fas fa-award" }
+    ];
+
+    return (
+        <section id="certificates" className="certificates-section">
+            <div className="container">
+                <h2> Certifications</h2>
+                <p className="section-tagline">Courses, workshops, and hackathons I've completed</p>
+                <div className="row justify-content-center g-4">
+                    {certs.map((cert, index) => (
+                        <div key={index} className="col-md-6 col-lg-4">
+                            <div className="certificate-card visible">
+                                <div className="cert-icon"><i className={cert.icon}></i></div>
+                                <h4>{cert.title}</h4>
+                                <p>{cert.desc}</p>
+                                <a href={cert.link} target="_blank" className="btn-secondary">View Document</a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const Contact = () => {
+    return (
+        <section id="contact">
+            <div className="container">
+                <h2 className="text-center mb-5">Contact Me</h2>
+                <div className="contact-actions text-center mb-5">
+                    <a href="mailto:gangadharmyla2006@gmail.com" className="btn-primary">
+                        <i className="fas fa-envelope"></i> Send Email
+                    </a>
+                    <a href="tel:+919390990429" className="btn-secondary">
+                        <i className="fas fa-phone"></i> Call Me
+                    </a>
+                </div>
+                <div className="row g-4 justify-content-center">
+                    <div className="col-md-3">
+                        <a href="https://github.com/Ganga07-code" target="_blank" className="contact-card visible">
+                            <div className="contact-icon"><i className="fab fa-github"></i></div>
+                            <h5>GitHub</h5>
+                            <p>Check out my projects</p>
+                        </a>
+                    </div>
+                    <div className="col-md-3">
+                        <a href="https://www.linkedin.com/in/gangadhar-myla-801aa035a/" target="_blank" className="contact-card visible">
+                            <div className="contact-icon"><i className="fab fa-linkedin"></i></div>
+                            <h5>LinkedIn</h5>
+                            <p>Connect with me</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const Resume = () => {
+    return (
+        <section id="resume" className="resume-section">
+            <div className="container text-center">
+                <h2><i className="fas fa-file-alt" style={{ fontSize: '2rem', color: '#06b6d4', marginRight: '12px' }}></i>Resume</h2>
+                <p>You can download my resume here:</p>
+                <a href="Files/resume_final_mine.pdf" download className="btn-primary" style={{ padding: '16px 48px' }}>
+                    <i className="fas fa-download"></i> Download Resume
+                </a>
+            </div>
+        </section>
+    );
+};
+
+const Footer = () => {
+    return (
+        <footer>
+            <div className="footer-content">
+                <div className="social-icons">
+                    <a href="https://github.com/Ganga07-code" target="_blank" className="social-link"><i className="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/gangadhar-myla-801aa035a/" target="_blank" className="social-link"><i className="fab fa-linkedin"></i></a>
+                    <a href="mailto:gangadharmyla2006@gmail.com" className="social-link"><i className="fas fa-envelope"></i></a>
+                    <a href="tel:9390990429" className="social-link"><i className="fas fa-phone"></i></a>
+                </div>
+                <p className="footer-text">Designed & Built by <span style={{ color: '#06b6d4' }}>Myla Gangadhar</span> &mdash; &copy; 2025. All Rights Reserved.</p>
+            </div>
+        </footer>
+    );
+};
+
+const App = () => {
+    // Reveal on scroll effect
+    useEffect(() => {
+        // Remove loading screen ONLY after React has had a chance to render
+        const loader = document.querySelector('.loading-screen');
+        if (loader) {
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // Initialize reveal observer for dynamically rendered components
+                if (typeof initScrollReveal === 'function') initScrollReveal();
+            }, 1000);
+        }
+    }, []);
+
+    return (
+        <div>
+            <Hero />
+            <Education />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Certificates />
+            <Contact />
+            <Resume />
+            <Footer />
+        </div>
+    );
+};
+
+const root = ReactDOM.createRoot(document.getElementById('react-root'));
+root.render(<App />);
+  </script>
+</body>
+
+</html>
