@@ -1,13 +1,9 @@
 "use client";
 
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="py-20 border-t border-white/5 bg-black/40 relative overflow-hidden">
       <div className="container-custom">
@@ -40,13 +36,6 @@ export default function Footer() {
               </a>
             ))}
           </div>
-
-          <button
-            onClick={scrollToTop}
-            className="w-14 h-14 rounded-full glass border border-white/10 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/40 transition-all buoyant group shadow-2xl"
-          >
-            <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-          </button>
         </div>
 
         <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">

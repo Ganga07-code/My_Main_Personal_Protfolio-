@@ -20,9 +20,9 @@ export default function Home() {
       <About />
       <Education />
       <Experience />
+      <Projects />
       <Skills />
       <Certifications />
-      <Projects />
       <Contact />
       <Footer />
       <ScrollToTop />
