@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 
@@ -65,14 +65,6 @@ export default function Hero() {
                 View Projects
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
               </Link>
-              <a
-                href="/M. Gangadhar Resume.pdf"
-                download
-                className="px-6 sm:px-8 py-4 sm:py-5 rounded-2xl glass text-white font-black flex items-center justify-center gap-3 transition-all hover:bg-white/10 hover:border-white/30 border border-white/10 active:scale-95"
-              >
-                Download Resume
-                <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              </a>
             </div>
           </motion.div>
 
