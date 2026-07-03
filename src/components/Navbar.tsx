@@ -29,16 +29,14 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled ? "py-3" : "py-5"
-      }`}
+      className="fixed top-0 w-full z-50 py-4"
     >
       <div className="container-custom flex justify-between items-center">
         {/* Glass Container for Navbar Content */}
-        <div className={`flex w-full justify-between items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-500 border ${
+        <div className={`flex w-full justify-between items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-300 border ${
           isScrolled 
             ? "glass border-white/10 shadow-2xl bg-black/40" 
-            : "border-transparent"
+            : "border-transparent bg-transparent"
         }`}>
           <a href="#home" className="text-xl sm:text-2xl font-[800] tracking-tighter text-white group flex items-center gap-2" onClick={closeMenu}>
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary flex items-center justify-center text-black font-black text-xs group-hover:rotate-12 transition-transform">G</div>
