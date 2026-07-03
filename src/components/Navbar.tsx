@@ -23,6 +23,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -38,7 +40,7 @@ export default function Navbar() {
             ? "glass border-white/10 shadow-2xl bg-black/40" 
             : "border-transparent"
         }`}>
-          <a href="#home" className="text-xl sm:text-2xl font-[800] tracking-tighter text-white group flex items-center gap-2">
+          <a href="#home" className="text-xl sm:text-2xl font-[800] tracking-tighter text-white group flex items-center gap-2" onClick={closeMenu}>
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary flex items-center justify-center text-black font-black text-xs group-hover:rotate-12 transition-transform">G</div>
             GANGA<span className="text-primary">DHAR</span>
           </a>
@@ -75,35 +77,45 @@ export default function Navbar() {
       {/* Mobile Nav */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 right-0 p-4"
-          >
-            <div className="glass border border-white/10 rounded-[1.5rem] p-6 space-y-5 shadow-2xl bg-black/90">
-              {navLinks.map((link) => (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="md:hidden fixed inset-0 bg-black/60 z-40"
+              onClick={closeMenu}
+            />
+            {/* Menu */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="md:hidden absolute top-full left-0 right-0 p-4 z-50"
+            >
+              <div className="glass border border-white/10 rounded-[1.5rem] p-6 space-y-5 shadow-2xl bg-black/95">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="block text-sm font-black text-slate-400 hover:text-white transition-all uppercase tracking-widest"
+                  >
+                    {link.name}
+                  </a>
+                ))}
                 <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-sm font-black text-slate-400 hover:text-white transition-all uppercase tracking-widest"
+                  href="#contact"
+                  onClick={closeMenu}
+                  className="block w-full py-4 text-center rounded-xl bg-primary text-white font-black uppercase tracking-widest"
                 >
-                  {link.name}
+                  Hire Me
                 </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full py-4 text-center rounded-xl bg-primary text-white font-black uppercase tracking-widest"
-              >
-                Hire Me
-              </a>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>
   );
 }
-
