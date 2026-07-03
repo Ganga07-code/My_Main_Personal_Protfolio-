@@ -39,11 +39,9 @@ export default function Hero() {
               <span className="text-secondary opacity-50">/</span>
               <TypeAnimation
                 sequence={[
-                  "Frontend Developer",
-                  2000,
                   "Cyber Security Enthusiast",
                   2000,
-                  "Problem Solver",
+                  "Frontend Developer",
                   2000,
                   "UI/UX Enthusiast",
                   2000,
@@ -68,7 +66,7 @@ export default function Hero() {
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
               </Link>
               <a
-                href="/assets/files/resume_final_mine.pdf"
+                href="/M. Gangadhar Resume.pdf"
                 download
                 className="px-6 sm:px-8 py-4 sm:py-5 rounded-2xl glass text-white font-black flex items-center justify-center gap-3 transition-all hover:bg-white/10 hover:border-white/30 border border-white/10 active:scale-95"
               >
