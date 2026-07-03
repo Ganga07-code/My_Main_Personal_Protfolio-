@@ -14,18 +14,18 @@ export default function About() {
   return (
     <section id="about" className="section-padding relative overflow-hidden bg-black/20">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           
           {/* Image Side */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative order-2 lg:order-1"
+            className="relative order-1 lg:order-1"
           >
-            <div className="relative aspect-square max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-              <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-[2rem] sm:rounded-[3rem] blur-2xl opacity-50 animate-pulse" />
-              <div className="relative h-full w-full rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-white/10 glass buoyant shadow-2xl">
+            <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:aspect-square lg:max-w-md mx-auto">
+              <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full blur-2xl opacity-50 animate-pulse" />
+              <div className="relative h-full w-full rounded-full sm:rounded-[2rem] lg:rounded-[3rem] overflow-hidden border border-white/10 glass buoyant shadow-2xl">
                 <Image
                   src="/assets/images/Hero.jpeg"
                   alt="Myla Gangadhar"
@@ -42,7 +42,7 @@ export default function About() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8 lg:space-y-12 order-1 lg:order-2"
+            className="space-y-8 lg:space-y-12 order-2 lg:order-2"
           >
             <div>
               <motion.div
@@ -84,4 +84,3 @@ export default function About() {
     </section>
   );
 }
-
