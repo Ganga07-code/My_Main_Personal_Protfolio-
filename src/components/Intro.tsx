@@ -22,7 +22,7 @@ const CodeRain = () => {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute top-0 text-primary/30 font-mono text-xs sm:text-sm whitespace-nowrap"
+          className="absolute top-0 text-primary/30 font-mono text-[10px] sm:text-xs sm:text-sm whitespace-nowrap"
           style={{ 
             left: `${i * 7}%`,
           }}
@@ -44,7 +44,7 @@ export default function Intro() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000); // Shorter duration
     return () => clearTimeout(timer);
   }, []);
 
@@ -53,22 +53,22 @@ export default function Intro() {
       {isLoading && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.1 }}
-          transition={{ duration: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 0.6 }}
           className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
         >
           <CodeRain />
           
           <div className="relative z-10 flex flex-col items-center px-4">
             {/* Logo with expanding ring */}
-            <div className="relative mb-8">
+            <div className="relative mb-4 sm:mb-6">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, type: "spring" }}
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl shadow-primary/20"
+                className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl shadow-primary/20"
               >
-                <span className="text-black font-black text-4xl sm:text-5xl">G</span>
+                <span className="text-black font-black text-2xl sm:text-4xl md:text-5xl">G</span>
               </motion.div>
               
               {/* Expanding rings */}
@@ -83,43 +83,36 @@ export default function Intro() {
                     repeat: Infinity,
                     ease: "easeOut",
                   }}
-                  className="absolute inset-0 border-2 border-primary rounded-2xl"
+                  className="absolute inset-0 border-2 border-primary rounded-xl sm:rounded-2xl"
                 />
               ))}
             </div>
 
-            {/* Name with typing effect */}
+            {/* Name */}
             <div className="relative">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <span className="text-4xl sm:text-6xl md:text-7xl font-[800] tracking-tighter text-white">
+                <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-[800] tracking-tighter text-white">
                   GANGADHAR
                 </span>
               </motion.div>
-              
-              {/* Blinking cursor */}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="inline-block w-1 h-12 sm:h-16 md:h-20 ml-1 align-middle bg-primary"
-              />
             </div>
 
-            {/* Subtitle */}
+            {/* Subtitle - less gap */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="mt-4 text-xs sm:text-sm md:text-base text-slate-500 font-black uppercase tracking-[0.3em]"
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-sm lg:text-base text-slate-500 font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-center"
             >
               Frontend Developer & Cyber Security Enthusiast
             </motion.p>
 
             {/* Progress dots */}
-            <div className="mt-12 flex gap-3">
+            <div className="mt-6 sm:mt-10 flex gap-2 sm:gap-3">
               {[0,1,2,3,4].map((i) => (
                 <motion.div
                   key={i}
@@ -127,11 +120,11 @@ export default function Intro() {
                   animate={{ scale: [0, 1, 0.5] }}
                   transition={{
                     duration: 0.5,
-                    delay: 1 + i * 0.3,
+                    delay: 0.7 + i * 0.2,
                     repeat: Infinity,
-                    repeatDelay: 1.5,
+                    repeatDelay: 1.3,
                   }}
-                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary"
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-primary"
                 />
               ))}
             </div>
