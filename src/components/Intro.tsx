@@ -17,8 +17,8 @@ const CodeRain = () => {
             opacity: [0, 0.8, 0],
           }}
           transition={{
-            duration: 3 + Math.random() * 4,
-            delay: Math.random() * 2,
+            duration: 3 + (i % 4),
+            delay: i * 0.2,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -27,9 +27,9 @@ const CodeRain = () => {
             left: `${i * 7}%`,
           }}
         >
-          {[...Array(20 + Math.random() * 30)].map((_, j) => (
+          {[...Array(25 + i % 10)].map((_, j) => (
             <div key={j} className="opacity-50">
-              {chars[Math.floor(Math.random() * chars.length)]}
+              {chars[j % chars.length]}
             </div>
           ))}
         </motion.div>
