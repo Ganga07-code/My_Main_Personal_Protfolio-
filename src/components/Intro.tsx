@@ -3,13 +3,48 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const CodeRain = () => {
+  const chars = "01GANGADHAR<>/{}[]()";
+  
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {[...Array(15)].map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ 
+            y: "120vh",
+            opacity: [0, 0.8, 0],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 4,
+            delay: Math.random() * 2,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-0 text-primary/30 font-mono text-xs sm:text-sm whitespace-nowrap"
+          style={{ 
+            left: `${i * 7}%`,
+          }}
+        >
+          {[...Array(20 + Math.random() * 30)].map((_, j) => (
+            <div key={j} className="opacity-50">
+              {chars[Math.floor(Math.random() * chars.length)]}
+            </div>
+          ))}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 export default function Intro() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -18,86 +53,88 @@ export default function Intro() {
       {isLoading && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          exit={{ opacity: 0, scale: 1.1 }}
+          transition={{ duration: 1 }}
           className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
         >
-          <div className="relative z-10 flex flex-col items-center">
-            {/* Logo Text */}
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="flex items-center gap-3 mb-8"
-            >
+          <CodeRain />
+          
+          <div className="relative z-10 flex flex-col items-center px-4">
+            {/* Logo with expanding ring */}
+            <div className="relative mb-8">
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5, type: "spring" }}
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl shadow-primary/20"
               >
-                <span className="text-black font-black text-xl sm:text-2xl">G</span>
+                <span className="text-black font-black text-4xl sm:text-5xl">G</span>
               </motion.div>
-              <div className="flex flex-col">
-                <span className="text-3xl sm:text-5xl font-[800] tracking-tighter text-white">
-                  GANGA<span className="text-primary">DHAR</span>
-                </span>
-                <span className="text-xs sm:text-sm text-slate-500 font-black uppercase tracking-[0.3em]">
-                  PORTFOLIO
-                </span>
-              </div>
-            </motion.div>
+              
+              {/* Expanding rings */}
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 1, opacity: 0.5 }}
+                  animate={{ scale: 2.5, opacity: 0 }}
+                  transition={{
+                    duration: 1.5,
+                    delay: i * 0.4,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                  }}
+                  className="absolute inset-0 border-2 border-primary rounded-2xl"
+                />
+              ))}
+            </div>
 
-            {/* Progress Bar */}
-            <div className="w-64 sm:w-80 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            {/* Name with typing effect */}
+            <div className="relative">
               <motion.div
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-                className="h-full bg-gradient-to-r from-primary to-secondary"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <span className="text-4xl sm:text-6xl md:text-7xl font-[800] tracking-tighter text-white">
+                  GANGADHAR
+                </span>
+              </motion.div>
+              
+              {/* Blinking cursor */}
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-1 h-12 sm:h-16 md:h-20 ml-1 align-middle bg-primary"
               />
             </div>
 
-            {/* Loading Text */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-8"
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="mt-4 text-xs sm:text-sm md:text-base text-slate-500 font-black uppercase tracking-[0.3em]"
             >
-              <span className="text-xs text-slate-600 font-black uppercase tracking-[0.3em]">
-                LOADING
-              </span>
-              <span className="text-xs text-slate-600 font-black uppercase tracking-[0.3em] inline-block w-2 text-center">
-                <motion.span
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  .
-                </motion.span>
-              </span>
-              <span className="text-xs text-slate-600 font-black uppercase tracking-[0.3em] inline-block w-2 text-center">
-                <motion.span
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
-                >
-                  .
-                </motion.span>
-              </span>
-              <span className="text-xs text-slate-600 font-black uppercase tracking-[0.3em] inline-block w-2 text-center">
-                <motion.span
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
-                >
-                  .
-                </motion.span>
-              </span>
-            </motion.div>
-          </div>
+              Frontend Developer & Cyber Security Enthusiast
+            </motion.p>
 
-          {/* Background Grid */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
+            {/* Progress dots */}
+            <div className="mt-12 flex gap-3">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: [0, 1, 0.5] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 1 + i * 0.3,
+                    repeat: Infinity,
+                    repeatDelay: 1.5,
+                  }}
+                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary"
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
       )}
