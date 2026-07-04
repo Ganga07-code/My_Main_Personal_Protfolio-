@@ -8,7 +8,7 @@ const CodeRain = () => {
   
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {[...Array(15)].map((_, i) => (
+      {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14].map((i) => (
         <motion.div
           key={i}
           initial={{ y: -100, opacity: 0 }}
@@ -27,7 +27,7 @@ const CodeRain = () => {
             left: `${i * 7}%`,
           }}
         >
-          {[...Array(25 + i % 10)].map((_, j) => (
+          {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map((j) => (
             <div key={j} className="opacity-50">
               {chars[j % chars.length]}
             </div>
@@ -72,7 +72,7 @@ export default function Intro() {
               </motion.div>
               
               {/* Expanding rings */}
-              {[...Array(3)].map((_, i) => (
+              {[0,1,2].map((i) => (
                 <motion.div
                   key={i}
                   initial={{ scale: 1, opacity: 0.5 }}
@@ -120,7 +120,7 @@ export default function Intro() {
 
             {/* Progress dots */}
             <div className="mt-12 flex gap-3">
-              {[...Array(5)].map((_, i) => (
+              {[0,1,2,3,4].map((i) => (
                 <motion.div
                   key={i}
                   initial={{ scale: 0 }}
