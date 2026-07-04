@@ -8,7 +8,7 @@ const educationData = [
     degree: "B.Tech. Computer Science Engineering",
     institution: "SRM University, Andhra Pradesh",
     period: "2023 – 2027",
-    score: "CGPA: 8.36 / 10",
+    score: "CGPA: 8.48 / 10",
   },
   {
     degree: "Intermediate (MPC)",

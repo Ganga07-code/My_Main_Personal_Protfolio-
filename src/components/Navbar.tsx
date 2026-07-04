@@ -26,11 +26,7 @@ export default function Navbar() {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 w-full z-50 py-4"
-    >
+    <nav className="fixed top-0 w-full z-50 py-4">
       <div className="container-custom flex justify-between items-center">
         {/* Glass Container for Navbar Content */}
         <div className={`flex w-full justify-between items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-300 border ${
@@ -77,10 +73,7 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <>
             {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+            <div
               className="md:hidden fixed inset-0 bg-black/60 z-40"
               onClick={closeMenu}
             />
@@ -114,6 +107,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }
