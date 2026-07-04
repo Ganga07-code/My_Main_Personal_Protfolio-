@@ -1,21 +1,23 @@
 # 🌌 Myla Gangadhar — Personal Developer Portfolio
 
-A stunning, highly-interactive, and performant personal portfolio built with **Next.js 14 (App Router)**, **Tailwind CSS**, and lightweight **CSS animations** for a buttery-smooth experience across all devices.
+A stunning, highly-interactive, and performant personal portfolio built with **Next.js 16 (App Router)**, **Tailwind CSS**, **Framer Motion**, and a custom animated intro for a buttery-smooth experience across all devices.
 
-🔗 **Live Site:** [Deployed on Netlify / Vercel](#) *(update with your live URL)*
+🔗 **Live Site:** [Deployed on Vercel](#) *(update with your live URL)*
 
 ---
 
 ## ✨ Features & Architecture
 
 - **Next.js App Router** — Server-side rendering for optimal SEO and fast page loads.
-- **CSS Scroll-Reveal Animations** — Lightweight intersection-observer-based reveals replacing heavy animation libraries, ensuring zero rendering lag.
+- **Framer Motion Animations** — Smooth, performant animations for all sections and the custom intro.
 - **Premium Glassmorphism UI** — All cards use `backdrop-blur` frosted glass effects with neon accent glows for a luxury tech aesthetic.
-- **Custom Animated Cursor** — Bespoke cursor that tracks mouse movement for an interactive feel.
-- **Dynamic Background** — Subtle technical grid with a mouse-tracking spotlight glow.
-- **Responsive Grid Layout** — Projects grid auto-centers lone cards on large screens for a polished look at every count.
+- **Animated Intro Screen** — Beautiful opening animation with rotating logo and progress bar.
+- **Dynamic Background** — Subtle technical grid with floating particles and gradient effects.
+- **Responsive Design** — Perfectly optimized for mobile, tablet, and desktop screens.
 - **Contact Form** — Ready for EmailJS integration to receive real-time messages.
 - **Scroll-to-Top Button** — Smooth navigation utility for long-scroll pages.
+- **Certifications Section** — Showcases your achievements and certifications.
+- **Cyber Security Section** — Highlights your cyber security skills and interests.
 
 ---
 
@@ -23,13 +25,16 @@ A stunning, highly-interactive, and performant personal portfolio built with **N
 
 | Section | Description |
 |---|---|
-| **Hero** | Animated typewriter intro with role highlights and CTA buttons |
-| **About** | Personal summary with a 3D glassmorphism card layout |
-| **Skills** | Tech stack displayed as styled tag pills |
-| **Experience** | Timeline of roles and responsibilities |
+| **Intro** | Animated opening screen with rotating logo and progress bar |
+| **Hero** | Animated typewriter intro with role highlights and CTA button |
+| **About** | Personal summary with photo and stats grid |
+| **Education** | Academic background timeline |
+| **Experience** | Work experience timeline |
 | **Projects** | Featured + other project cards with GitHub links |
-| **Education** | Academic background cards |
+| **Skills** | Tech stack displayed in four categories: Frontend, Backend & Languages, Tools & AI, Cyber Security |
+| **Certifications** | Your certifications and achievements |
 | **Contact** | EmailJS-ready contact form |
+| **Footer** | Social links and copyright info |
 
 ---
 
@@ -45,7 +50,6 @@ A stunning, highly-interactive, and performant personal portfolio built with **N
 | Project | Tech | Link |
 |---|---|---|
 | **Time-Table Management System** | DBMS, SQL, Python, Backend | [GitHub](https://github.com/Ganga07-code/Time-Table-Management-System) |
-| **Personal Portfolio Website** | HTML5, CSS3, JavaScript, Netlify | [GitHub](https://github.com/Ganga07-code/My_Main_Personal_Protfolio-) |
 | **Credit Card Fraud Detection** | Python, Scikit-learn, Pandas, ML | [GitHub](https://github.com/Ganga07-code) |
 | **Alzheimer's Prediction System** | Python, TensorFlow, Deep Learning, Medical AI | [GitHub](https://github.com/Ganga07-code/Alzhimers-Prediction) |
 
@@ -55,10 +59,10 @@ A stunning, highly-interactive, and performant personal portfolio built with **N
 
 | Layer | Technology |
 |---|---|
-| **Framework** | Next.js 14 (App Router) |
-| **Language** | TypeScript / React 18 |
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript / React 19 |
 | **Styling** | Tailwind CSS 3 |
-| **Animations** | CSS Intersection Observer (ScrollReveal) |
+| **Animations** | Framer Motion |
 | **Icons** | Lucide React |
 | **Type Animation** | react-type-animation |
 | **Contact** | @emailjs/browser |
@@ -95,18 +99,18 @@ src/
 │   ├── layout.tsx        # Root layout with metadata & SEO
 │   └── page.tsx          # Main page assembling all sections
 └── components/
-    ├── Navbar.tsx         # Sticky nav with smooth scroll links
+    ├── Intro.tsx          # Animated opening screen
+    ├── Navbar.tsx         # Sticky nav with smooth scroll links and mobile menu
     ├── Hero.tsx           # Landing section with typewriter effect
-    ├── About.tsx          # About me card
-    ├── Skills.tsx         # Tech skills tags
+    ├── About.tsx          # About me with photo and stats
+    ├── Education.tsx      # Academic timeline
     ├── Experience.tsx     # Work experience timeline
     ├── Projects.tsx       # Featured & other project cards
-    ├── Education.tsx      # Academic cards
+    ├── Skills.tsx         # Tech skills in 4 categories
+    ├── Certifications.tsx # Certifications grid
     ├── Contact.tsx        # Contact form (EmailJS ready)
     ├── Footer.tsx         # Footer with social links
-    ├── BackgroundEffects.tsx  # Grid & spotlight background
-    ├── CustomCursor.tsx   # Animated custom cursor
-    ├── ScrollReveal.tsx   # Scroll-triggered reveal hook
+    ├── BackgroundEffects.tsx  # Grid & particles background
     └── ScrollToTop.tsx    # Floating scroll-to-top button
 ```
 
