@@ -26,7 +26,7 @@ const educationData = [
 
 export default function Education() {
   return (
-    <section id="education" className="section-padding relative overflow-hidden bg-black/20">
+    <section id="education" className="section-padding relative overflow-hidden bg-gradient-to-b from-black/30 via-black/20 to-transparent">
       <div className="container-custom">
         <div className="text-center mb-16 sm:mb-24">
           <motion.div

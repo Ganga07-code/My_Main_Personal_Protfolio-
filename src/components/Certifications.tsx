@@ -36,7 +36,7 @@ const certificates = [
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="section-padding relative overflow-hidden bg-black/20">
+    <section id="certifications" className="section-padding relative overflow-hidden bg-gradient-to-b from-black/30 via-black/20 to-transparent">
       <div className="container-custom">
         <div className="text-center mb-24">
           <motion.div

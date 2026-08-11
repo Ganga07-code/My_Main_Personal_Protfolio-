@@ -12,7 +12,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="section-padding relative overflow-hidden bg-black/20">
+    <section id="about" className="section-padding relative overflow-hidden bg-gradient-to-b from-black/40 via-black/20 to-transparent">
       <div className="container-custom">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           

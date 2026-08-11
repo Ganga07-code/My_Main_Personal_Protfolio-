@@ -29,7 +29,7 @@ const experienceData = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-padding relative overflow-hidden bg-black/30">
+    <section id="experience" className="section-padding relative overflow-hidden bg-gradient-to-b from-black/40 via-black/30 to-transparent">
       <div className="container-custom">
         <div className="text-center mb-16 sm:mb-24">
           <motion.div
