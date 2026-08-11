@@ -18,9 +18,10 @@ export default function About() {
           
           {/* Image Side */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative order-1 lg:order-1"
           >
             <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:aspect-square lg:max-w-md mx-auto">
@@ -42,6 +43,7 @@ export default function About() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="space-y-8 lg:space-y-12 order-2 lg:order-2"
           >
             <div>
@@ -68,8 +70,12 @@ export default function About() {
               {stats.map((stat, i) => (
                 <motion.div
                   key={i}
-                  whileHover={{ y: -5 }}
-                  className="p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] glass border border-white/5 hover:border-primary/20 transition-all text-center group buoyant"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] glass border border-white/5 hover:border-primary/20 transition-all duration-300 text-center group buoyant hover:shadow-lg hover:shadow-primary/20"
                 >
                   <stat.icon className="w-8 sm:w-10 h-8 sm:h-10 text-primary mx-auto mb-4 sm:mb-5 group-hover:scale-110 transition-transform" />
                   <p className="text-2xl sm:text-3xl font-[800] text-white mb-2 tracking-tighter">{stat.value}</p>

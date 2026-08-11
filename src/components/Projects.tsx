@@ -37,13 +37,32 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Alzheimer's Prediction System",
-    description: "Deep learning model for early disease detection.",
-    longDescription: "Addressed the need for early medical intervention by building a CNN-based model that predicts Alzheimer's progression from MRI scans with high accuracy.",
-    tech: ["TensorFlow", "Python", "Medical AI", "Scikit-learn"],
-    githubUrl: "https://github.com/Ganga07-code/Alzhimers-Prediction",
-    liveUrl: "https://alzhimers-prediction.onrender.com",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2070&auto=format&fit=crop",
+    title: "Interactive Particle Engine",
+    description: "Real-time particle system with WebGL rendering.",
+    longDescription: "A high-performance particle engine that creates interactive visual effects with smooth animations and responsive cursor tracking.",
+    tech: ["WebGL", "JavaScript", "Animation", "Three.js"],
+    githubUrl: "https://github.com/Ganga07-code/Interactive-Particle-Engine",
+    liveUrl: "https://interactive-particle-engine.vercel.app/",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+    featured: false,
+  },
+  {
+    title: "React CRUD App",
+    description: "Full-stack CRUD application with React frontend.",
+    longDescription: "A comprehensive CRUD application built with React and integrated with a Node.js backend for complete full-stack functionality.",
+    tech: ["React", "Node.js", "Express", "MongoDB"],
+    githubUrl: "https://github.com/Ganga07-code/ReactAppCRUD",
+    liveUrl: "https://react-app-crud-seven.vercel.app/",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+    featured: false,
+  },
+  {
+    title: "Node Express CRUD Backend",
+    description: "RESTful backend API for CRUD operations.",
+    longDescription: "A robust Express.js backend server providing RESTful APIs with database integration and proper error handling.",
+    tech: ["Node.js", "Express", "MongoDB", "REST API"],
+    githubUrl: "https://github.com/Ganga07-code/NodeExpressCRUDApp",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
     featured: false,
   },
   {
@@ -62,10 +81,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.div
       whileInView={{ opacity: 1, y: 0 }}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className={`group relative glass rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-700 buoyant shadow-2xl ${
+      transition={{ delay: index * 0.12, duration: 0.6, ease: "easeOut" }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      className={`group relative glass rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_60px_rgba(6,182,212,0.3)] ${
         project.featured ? "col-span-1 md:col-span-2" : "col-span-1"
       }`}
     >
@@ -76,9 +96,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-1000 group-hover:scale-105"
+            className="object-cover transition-transform duration-1000 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
+          <motion.div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          />
           
           {!project.featured && (
             <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex flex-wrap gap-2">

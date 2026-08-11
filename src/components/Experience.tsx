@@ -72,7 +72,10 @@ export default function Experience() {
                 </div>
 
                 <div className={`md:w-1/2 ${i % 2 === 0 ? "md:pl-20" : "md:pr-20"} pl-12 sm:pl-16`}>
-                  <div className="glass p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all duration-500 buoyant group relative overflow-hidden">
+                  <motion.div 
+                    whileHover={{ y: -8, scale: 1.01 }}
+                    className="glass p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant group relative overflow-hidden hover:shadow-[0_20px_50px_rgba(6,182,212,0.2)]"
+                  >
                     <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                       <Briefcase className="w-16 h-16 sm:w-24 sm:h-24" />
                     </div>
@@ -84,7 +87,7 @@ export default function Experience() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-[800] text-white mb-2 sm:mb-3 group-hover:text-primary transition-colors tracking-tighter">{exp.role}</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-[800] text-white mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300 tracking-tighter">{exp.role}</h3>
                     <p className="text-xs sm:text-sm font-black text-slate-500 mb-6 sm:mb-8 uppercase tracking-widest">{exp.company}</p>
                     
                     <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10">{exp.description}</p>
@@ -96,7 +99,7 @@ export default function Experience() {
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}

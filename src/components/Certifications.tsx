@@ -71,15 +71,19 @@ export default function Certifications() {
             <motion.div
               key={i}
               whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group p-8 rounded-[2.5rem] glass border border-white/5 hover:border-primary/20 transition-all duration-500 buoyant shadow-2xl flex flex-col gap-6"
+              transition={{ delay: i * 0.12, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group p-8 rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(6,182,212,0.2)] flex flex-col gap-6"
             >
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl ${cert.bg} border ${cert.border} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+              <motion.div 
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                className={`w-14 h-14 rounded-2xl ${cert.bg} border ${cert.border} flex items-center justify-center transition-all shadow-lg`}
+              >
                 <cert.icon className={`w-7 h-7 ${cert.color}`} />
-              </div>
+              </motion.div>
 
               {/* Content */}
               <div className="flex-1">

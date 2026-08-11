@@ -106,15 +106,19 @@ export default function Skills() {
             <motion.div
               key={i}
               whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="group p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] glass border border-white/5 hover:border-primary/20 transition-all duration-500 buoyant shadow-2xl"
+              transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(6,182,212,0.2)]"
             >
               <div className="mb-6 sm:mb-10 flex items-center gap-3 sm:gap-5">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/5 flex items-center justify-center text-primary border border-white/10 group-hover:scale-110 transition-transform">
+                <motion.div 
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/5 flex items-center justify-center text-primary border border-white/10 group-hover:border-primary/50 transition-all duration-300 shadow-lg shadow-primary/10"
+                >
                   <group.icon className="w-6 h-6 sm:w-7 sm:h-7" />
-                </div>
+                </motion.div>
                 <h3 className="text-lg sm:text-xl font-[800] text-white tracking-tight uppercase">{group.title}</h3>
               </div>
 

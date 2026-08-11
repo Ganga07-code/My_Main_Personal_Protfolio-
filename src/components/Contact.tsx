@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -27,9 +27,14 @@ export default function Contact() {
             </p>
 
             <div className="space-y-6 sm:space-y-10 flex flex-col items-center w-full">
-              <a
+              <motion.a
                 href="mailto:gangadharmyla2006@gmail.com"
-                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md shadow-lg hover:shadow-[0_10px_40px_rgba(6,182,212,0.2)]"
               >
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl glass flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:border-primary/50 transition-all duration-300 shadow-2xl">
                   <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -38,7 +43,26 @@ export default function Contact() {
                   <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-1">Email Me</p>
                   <p className="text-white font-[800] text-base sm:text-xl tracking-tight break-all">gangadharmyla2006@gmail.com</p>
                 </div>
-              </a>
+              </motion.a>
+
+              <motion.a
+                href="/assets/files/resume_final_mine.pdf"
+                download="Ganga Resume.pdf"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md shadow-lg hover:shadow-[0_10px_40px_rgba(6,182,212,0.2)]"
+              >
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl glass flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:border-primary/50 transition-all duration-300 shadow-2xl">
+                  <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em] mb-1">Download Resume</p>
+                  <p className="text-white font-[800] text-base sm:text-xl tracking-tight">Ganga Resume</p>
+                </div>
+              </motion.a>
 
               <div className="flex gap-4 sm:gap-6 pt-4 sm:pt-6 justify-center">
                 {[

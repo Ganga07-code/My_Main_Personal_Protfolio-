@@ -16,9 +16,25 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      
+      // Update active section
+      const sections = navLinks.map(link => link.href.slice(1));
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (currentSection) setActiveSection(currentSection);
+    };
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -41,21 +57,37 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8 lg:gap-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-[10px] font-black text-slate-400 hover:text-white transition-all uppercase tracking-[0.2em]"
-              >
-                {link.name}
-              </a>
-            ))}
-            <a
+            {navLinks.map((link) => {
+              const sectionId = link.href.slice(1);
+              const isActive = activeSection === sectionId;
+              return (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="relative text-[10px] font-black text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
+                  whileHover={{ y: -2 }}
+                >
+                  {link.name}
+                  {isActive && (
+                    <motion.div
+                      layoutId="navbar-underline"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </motion.a>
+              );
+            })}
+            <motion.a
               href="#contact"
               className="px-6 sm:px-8 py-3 text-[10px] font-black rounded-xl bg-white text-black hover:bg-primary hover:text-white transition-all uppercase tracking-[0.2em] buoyant"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Hire Me
-            </a>
+            </motion.a>
           </div>
 
           {/* Mobile Toggle */}
