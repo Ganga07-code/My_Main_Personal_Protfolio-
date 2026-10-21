@@ -50,10 +50,7 @@ const skillGroups = [
   },
 ];
 
-function SkillBar({ name, level, color, delay }: { name: string; level: number; color: string; delay: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
+function SkillBar({ name, level, color, isInView }: { name: string; level: number; color: string; isInView: boolean }) {
   const barColor = color === "secondary"
     ? "bg-gradient-to-r from-secondary to-primary"
     : "bg-gradient-to-r from-primary to-secondary";
@@ -61,17 +58,15 @@ function SkillBar({ name, level, color, delay }: { name: string; level: number; 
   const textColor = color === "secondary" ? "text-secondary" : "text-primary";
 
   return (
-    <div ref={ref} className="space-y-2">
+    <div className="space-y-2">
       <div className="flex justify-between items-center">
         <span className="text-xs sm:text-sm font-bold text-slate-300">{name}</span>
         <span className={`text-xs font-black ${textColor}`}>{level}%</span>
       </div>
       <div className="h-2 w-full rounded-full bg-white/5 border border-white/10 overflow-hidden">
-        <motion.div
-          className={`h-full rounded-full ${barColor} shadow-lg`}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1.2, delay, ease: "easeOut" }}
+        <div
+          className={`h-full rounded-full ${barColor} transition-[width] duration-500 ease-out`}
+          style={{ width: isInView ? `${level}%` : "0%" }}
         />
       </div>
     </div>
@@ -79,8 +74,11 @@ function SkillBar({ name, level, color, delay }: { name: string; level: number; 
 }
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
+
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
+    <section ref={sectionRef} id="skills" className="section-padding relative overflow-hidden">
       <div className="container-custom">
         <div className="text-center mb-16 sm:mb-24">
           <motion.div
@@ -102,15 +100,14 @@ export default function Skills() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
-          {skillGroups.map((group, i) => (
+          {skillGroups.map((group) => (
             <motion.div
-              key={i}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={group.title}
               initial={{ opacity: 0, y: 40 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(243,166,90,0.12)]"
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              whileHover={{ y: -4 }}
+              className="group p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] bg-[#1c1b18]/90 border border-white/5 hover:border-primary/30 transition-colors duration-300 shadow-lg"
             >
               <div className="mb-6 sm:mb-10 flex items-center gap-3 sm:gap-5">
                 <motion.div 
@@ -123,13 +120,13 @@ export default function Skills() {
               </div>
 
               <div className="space-y-4 sm:space-y-6">
-                {group.skills.map((skill, j) => (
+                {group.skills.map((skill) => (
                   <SkillBar
-                    key={j}
+                    key={skill.name}
                     name={skill.name}
                     level={skill.level}
                     color={group.color}
-                    delay={i * 0.15 + j * 0.1}
+                    isInView={isInView}
                   />
                 ))}
               </div>
@@ -138,13 +135,6 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Decorative glows */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 opacity-20 blur-3xl pointer-events-none">
-        <div className="w-64 h-64 sm:w-96 sm:h-96 rounded-full bg-primary animate-pulse" />
-      </div>
-      <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 opacity-20 blur-3xl pointer-events-none">
-        <div className="w-80 h-80 sm:w-[500px] sm:h-[500px] rounded-full bg-secondary animate-pulse delay-1000" />
-      </div>
     </section>
   );
 }
