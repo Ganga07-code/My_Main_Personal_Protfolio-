@@ -75,7 +75,7 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.12, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group p-8 rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(6,182,212,0.2)] flex flex-col gap-6"
+              className="group p-8 rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(243,166,90,0.12)] flex flex-col gap-6"
             >
               {/* Icon */}
               <motion.div 

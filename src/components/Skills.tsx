@@ -55,10 +55,10 @@ function SkillBar({ name, level, color, delay }: { name: string; level: number; 
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const barColor = color === "secondary"
-    ? "bg-gradient-to-r from-cyan-500 to-sky-400"
-    : "bg-gradient-to-r from-violet-600 to-purple-400";
+    ? "bg-gradient-to-r from-secondary to-primary"
+    : "bg-gradient-to-r from-primary to-secondary";
 
-  const textColor = color === "secondary" ? "text-cyan-400" : "text-violet-400";
+  const textColor = color === "secondary" ? "text-secondary" : "text-primary";
 
   return (
     <div ref={ref} className="space-y-2">
@@ -110,7 +110,7 @@ export default function Skills() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(6,182,212,0.2)]"
+              className="group p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] glass border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_50px_rgba(243,166,90,0.12)]"
             >
               <div className="mb-6 sm:mb-10 flex items-center gap-3 sm:gap-5">
                 <motion.div 

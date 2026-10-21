@@ -34,7 +34,7 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md shadow-lg hover:shadow-[0_10px_40px_rgba(6,182,212,0.2)]"
+                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md shadow-lg hover:shadow-[0_10px_40px_rgba(243,166,90,0.12)]"
               >
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl glass flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:border-primary/50 transition-all duration-300 shadow-2xl">
                   <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -53,7 +53,7 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md shadow-lg hover:shadow-[0_10px_40px_rgba(6,182,212,0.2)]"
+                className="flex items-center gap-4 sm:gap-8 group buoyant bg-white/5 border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] hover:border-primary/30 transition-all w-full justify-center max-w-md shadow-lg hover:shadow-[0_10px_40px_rgba(243,166,90,0.12)]"
               >
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl glass flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:border-primary/50 transition-all duration-300 shadow-2xl">
                   <Download className="w-5 h-5 sm:w-6 sm:h-6" />

@@ -74,7 +74,7 @@ export default function Experience() {
                 <div className={`md:w-1/2 ${i % 2 === 0 ? "md:pl-20" : "md:pr-20"} pl-12 sm:pl-16`}>
                   <motion.div 
                     whileHover={{ y: -8, scale: 1.01 }}
-                    className="glass p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant group relative overflow-hidden hover:shadow-[0_20px_50px_rgba(6,182,212,0.2)]"
+                    className="glass p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant group relative overflow-hidden hover:shadow-[0_20px_50px_rgba(243,166,90,0.12)]"
                   >
                     <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                       <Briefcase className="w-16 h-16 sm:w-24 sm:h-24" />

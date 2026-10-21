@@ -25,10 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${syne.variable} font-sans antialiased bg-[#030712] text-slate-200`}>
+      <body className={`${inter.variable} ${syne.variable} bg-background font-sans text-foreground antialiased`}>
         {children}
       </body>
     </html>
   );
 }
-

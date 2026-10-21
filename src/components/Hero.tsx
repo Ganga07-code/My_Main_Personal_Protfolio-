@@ -60,7 +60,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full sm:w-auto">
               <Link
                 href="#projects"
-                className="group px-6 sm:px-8 py-4 sm:py-5 rounded-2xl bg-primary text-white font-black flex items-center justify-center gap-3 transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] active:scale-95"
+                className="group px-6 sm:px-8 py-4 sm:py-5 rounded-2xl bg-primary text-[#17130e] font-black flex items-center justify-center gap-3 transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(243,166,90,0.25)] active:scale-95"
               >
                 View Projects
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
@@ -90,4 +90,3 @@ export default function Hero() {
     </section>
   );
 }
-

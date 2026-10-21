@@ -96,7 +96,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.6, ease: "easeOut" }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className={`group relative glass rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_60px_rgba(6,182,212,0.3)] ${
+      className={`group relative glass rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 buoyant shadow-2xl hover:shadow-[0_20px_60px_rgba(243,166,90,0.14)] ${
         project.featured ? "col-span-1 md:col-span-2" : "col-span-1"
       }`}
     >
