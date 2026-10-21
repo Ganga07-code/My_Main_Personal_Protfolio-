@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import Intro from "@/components/Intro";
@@ -13,21 +16,46 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
+  const [portfolioUnlocked, setPortfolioUnlocked] = useState(false);
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (!portfolioUnlocked) {
+      body.style.overflow = "hidden";
+      body.style.height = "100vh";
+    } else {
+      body.style.overflow = "";
+      body.style.height = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    return () => {
+      body.style.overflow = "";
+      body.style.height = "";
+    };
+  }, [portfolioUnlocked]);
+
   return (
-    <main className="flex min-h-screen flex-col bg-transparent relative">
-      <Intro />
-      <BackgroundEffects />
-      <Navbar />
-      <Hero />
-      <About />
-      <Education />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Certifications />
-      <Contact />
-      <Footer />
-      <ScrollToTop />
+    <main className="relative flex min-h-screen flex-col bg-transparent">
+      <Intro isUnlocked={portfolioUnlocked} onUnlock={() => setPortfolioUnlocked(true)} />
+
+      {portfolioUnlocked && (
+        <>
+          <BackgroundEffects />
+          <Navbar />
+          <Hero />
+          <About />
+          <Education />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Certifications />
+          <Contact />
+          <Footer />
+          <ScrollToTop />
+        </>
+      )}
     </main>
   );
 }

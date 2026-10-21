@@ -46,8 +46,8 @@ export default function Contact() {
               </motion.a>
 
               <motion.a
-                href="/assets/files/resume_final_mine.pdf"
-                download="Ganga Resume.pdf"
+                href="/assets/files/Myla-Gangadhar-Resume.pdf"
+                download="Myla-Gangadhar-Resume.pdf"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

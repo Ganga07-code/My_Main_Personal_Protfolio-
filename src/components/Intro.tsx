@@ -1,133 +1,76 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-const CodeRain = () => {
-  const chars = "01GANGADHAR<>/{}[]()";
-  
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14].map((i) => (
-        <motion.div
-          key={i}
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ 
-            y: "120vh",
-            opacity: [0, 0.8, 0],
-          }}
-          transition={{
-            duration: 3 + (i % 4),
-            delay: i * 0.2,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-0 text-primary/30 font-mono text-[10px] sm:text-xs sm:text-sm whitespace-nowrap"
-          style={{ 
-            left: `${i * 7}%`,
-          }}
-        >
-          {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map((j) => (
-            <div key={j} className="opacity-50">
-              {chars[j % chars.length]}
-            </div>
-          ))}
-        </motion.div>
-      ))}
-    </div>
-  );
-};
+interface IntroProps {
+  isUnlocked: boolean;
+  onUnlock: () => void;
+}
 
-export default function Intro() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Shorter duration
-    return () => clearTimeout(timer);
-  }, []);
-
+export default function Intro({ isUnlocked, onUnlock }: IntroProps) {
   return (
     <AnimatePresence>
-      {isLoading && (
+      {!isUnlocked && (
         <motion.div
+          key="intro-screen"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.6 }}
-          className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 1.03 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050816]"
         >
-          <CodeRain />
-          
-          <div className="relative z-10 flex flex-col items-center px-4">
-            {/* Logo with expanding ring */}
-            <div className="relative mb-4 sm:mb-6">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5, type: "spring" }}
-                className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl shadow-primary/20"
-              >
-                <span className="text-black font-black text-2xl sm:text-4xl md:text-5xl">G</span>
-              </motion.div>
-              
-              {/* Expanding rings */}
-              {[0,1,2].map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 1, opacity: 0.5 }}
-                  animate={{ scale: 2.5, opacity: 0 }}
-                  transition={{
-                    duration: 1.5,
-                    delay: i * 0.4,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                  }}
-                  className="absolute inset-0 border-2 border-primary rounded-xl sm:rounded-2xl"
-                />
-              ))}
-            </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(6,182,212,0.18),_transparent_45%),radial-gradient(circle_at_bottom,_rgba(217,70,239,0.12),_transparent_38%)]" />
 
-            {/* Name */}
-            <div className="relative">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-[800] tracking-tighter text-white">
-                  GANGADHAR
-                </span>
-              </motion.div>
-            </div>
+          <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-2xl font-black text-black shadow-[0_0_40px_rgba(6,182,212,0.4)] sm:h-20 sm:w-20"
+            >
+              G
+            </motion.div>
 
-            {/* Subtitle - less gap */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-4xl font-[800] tracking-tighter text-white sm:text-5xl md:text-7xl"
+            >
+              Myla <span className="text-gradient-primary">Gangadhar</span>
+            </motion.h1>
+
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-sm lg:text-base text-slate-500 font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="mt-5 max-w-2xl text-sm font-bold uppercase tracking-[0.28em] text-slate-400 sm:text-base"
             >
               Frontend Developer & Cyber Security Enthusiast
             </motion.p>
 
-            {/* Progress dots */}
-            <div className="mt-6 sm:mt-10 flex gap-2 sm:gap-3">
-              {[0,1,2,3,4].map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1, 0.5] }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.7 + i * 0.2,
-                    repeat: Infinity,
-                    repeatDelay: 1.3,
-                  }}
-                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-primary"
-                />
-              ))}
-            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.32, duration: 0.6 }}
+              className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg"
+            >
+              I design secure, fast, and polished digital experiences that blend technical depth with thoughtful user-first design.
+            </motion.p>
+
+            <motion.button
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42, duration: 0.6 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={onUnlock}
+              className="mt-10 inline-flex items-center gap-3 rounded-2xl bg-primary px-6 py-4 text-xs font-black uppercase tracking-[0.25em] text-black shadow-[0_0_35px_rgba(6,182,212,0.35)] transition-all hover:bg-cyan-300"
+            >
+              Enter Portfolio
+              <ArrowRight className="h-4 w-4" />
+            </motion.button>
           </div>
         </motion.div>
       )}

@@ -9,7 +9,8 @@ interface Project {
   description: string;
   longDescription?: string;
   tech: string[];
-  githubUrl: string;
+  githubUrl?: string;
+  githubUrls?: string[];
   liveUrl?: string;
   image: string;
   featured: boolean;
@@ -17,9 +18,19 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Drowse Guard – Driver Distraction Detection System",
+    description: "Real-time driver monitoring solution for distraction and fatigue detection.",
+    longDescription: "Developed an intelligent safety system that monitors driver behavior in real time and detects distraction patterns to improve road safety and reduce accident risk.",
+    tech: ["Python", "OpenCV", "Computer Vision", "AI"],
+    githubUrl: "https://github.com/Ganga07-code/Drowse-Guard---Driver-Distraction-Detection-System",
+    liveUrl: "https://drowse-guard-app.vercel.app",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop",
+    featured: true,
+  },
+  {
     title: "PrivAccess – Zero Knowledge RBAC",
-    description: "Secure access control using Zero-Knowledge Proofs.",
-    longDescription: "Solved the problem of sensitive data exposure in role-based systems. Implemented a ZKP framework that allows authorization without revealing identity details.",
+    description: "Secure access control built with privacy-preserving authentication.",
+    longDescription: "Designed a zero-knowledge role-based access framework that verifies user permissions without exposing sensitive identity information, making authorization both secure and privacy-first.",
     tech: ["Python", "FastAPI", "ZKP", "Cryptography"],
     githubUrl: "https://github.com/abhiram-1508/PrivAccess-A-Zero-Knowledge-Framework-for-Role-Based-Access-Control",
     liveUrl: "https://privaccess-app.onrender.com",
@@ -27,19 +38,32 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: "Book Management System",
+    description: "Full-stack library management app for books, authors, and records.",
+    longDescription: "Built a comprehensive book management platform with frontend and backend components for managing book records, inventory updates, and user-friendly library workflows.",
+    tech: ["React", "Node.js", "Express", "MongoDB"],
+    githubUrls: [
+      "https://github.com/Ganga07-code/ReactAppCRUD",
+      "https://github.com/Ganga07-code/NodeExpressCRUDApp"
+    ],
+    liveUrl: "https://react-app-crud-seven.vercel.app/",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+    featured: false,
+  },
+  {
     title: "Credit Card Fraud Detection System",
-    description: "Machine learning model to detect fraudulent transactions.",
-    longDescription: "Developed a robust fraud detection system using advanced machine learning algorithms to identify anomalies and secure credit card transactions in real-time.",
+    description: "Machine learning workflow for detecting fraudulent transactions.",
+    longDescription: "Developed an analytical fraud detection platform using supervised learning, anomaly detection, and explainable model insights to improve transaction security.",
     tech: ["Python", "Machine Learning", "Scikit-learn", "Data Science"],
     githubUrl: "https://github.com/Ganga07-code",
     liveUrl: "https://credit-card-fraud-detection-system-jet.vercel.app",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
-    featured: true,
+    featured: false,
   },
   {
     title: "Interactive Particle Engine",
-    description: "Real-time particle system with WebGL rendering.",
-    longDescription: "A high-performance particle engine that creates interactive visual effects with smooth animations and responsive cursor tracking.",
+    description: "Real-time particle visuals with smooth motion and interaction.",
+    longDescription: "Created a high-performance particle engine with immersive visual effects, responsive cursor interaction, and dynamic motion controls for engaging web experiences.",
     tech: ["WebGL", "JavaScript", "Animation", "Three.js"],
     githubUrl: "https://github.com/Ganga07-code/Interactive-Particle-Engine",
     liveUrl: "https://interactive-particle-engine.vercel.app/",
@@ -47,28 +71,9 @@ const projects: Project[] = [
     featured: false,
   },
   {
-    title: "React CRUD App",
-    description: "Full-stack CRUD application with React frontend.",
-    longDescription: "A comprehensive CRUD application built with React and integrated with a Node.js backend for complete full-stack functionality.",
-    tech: ["React", "Node.js", "Express", "MongoDB"],
-    githubUrl: "https://github.com/Ganga07-code/ReactAppCRUD",
-    liveUrl: "https://react-app-crud-seven.vercel.app/",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
-    featured: false,
-  },
-  {
-    title: "Node Express CRUD Backend",
-    description: "RESTful backend API for CRUD operations.",
-    longDescription: "A robust Express.js backend server providing RESTful APIs with database integration and proper error handling.",
-    tech: ["Node.js", "Express", "MongoDB", "REST API"],
-    githubUrl: "https://github.com/Ganga07-code/NodeExpressCRUDApp",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
-    featured: false,
-  },
-  {
     title: "AI Rock Paper Scissors",
-    description: "Real-time hand gesture recognition for AI games.",
-    longDescription: "Developed a computer vision system to bridge physical interaction with digital play. Used MediaPipe for accurate hand tracking and real-time gesture classification.",
+    description: "Gesture-based AI game using computer vision and real-time detection.",
+    longDescription: "Built a computer vision game where hand gestures are classified instantly to create a responsive AI-powered rock-paper-scissors experience.",
     tech: ["Python", "OpenCV", "MediaPipe", "NumPy"],
     githubUrl: "https://github.com/Ganga07-code/AI-Rock-Paper-Scissors-Hand-Gesture",
     liveUrl: "https://ai-rock-paper-scissors-hand-gesture.vercel.app",
@@ -78,6 +83,12 @@ const projects: Project[] = [
 ];
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const sourceLinks = project.githubUrls?.length
+    ? project.githubUrls
+    : project.githubUrl
+      ? [project.githubUrl]
+      : [];
+
   return (
     <motion.div
       whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +101,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       }`}
     >
       <div className={`flex flex-col ${project.featured ? "lg:flex-row" : ""} h-full`}>
-        {/* Image Container */}
         <div className={`relative overflow-hidden ${project.featured ? "lg:w-1/2 min-h-[250px] sm:min-h-[300px] md:min-h-[400px]" : "w-full h-56 sm:h-64 md:h-72"}`}>
           <Image
             src={project.image}
@@ -102,7 +112,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <motion.div 
             className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           />
-          
+
           {!project.featured && (
             <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex flex-wrap gap-2">
               {project.tech.slice(0, 2).map((t, i) => (
@@ -114,7 +124,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           )}
         </div>
 
-        {/* Content Container */}
         <div className={`p-6 sm:p-8 lg:p-10 flex flex-col justify-between ${project.featured ? "lg:w-1/2" : "w-full"}`}>
           <div>
             {project.featured && (
@@ -129,7 +138,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <p className="text-slate-400 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-10">
               {project.featured ? project.longDescription : project.description}
             </p>
-            
+
             {project.featured && (
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12">
                 {project.tech.map((t, i) => (
@@ -142,15 +151,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
 
           <div className="flex items-center gap-4 sm:gap-8 flex-wrap">
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-black text-white hover:text-primary transition-all group/link buoyant"
-            >
-              <Github className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="tracking-[0.2em]">SOURCE CODE</span>
-            </a>
+            {sourceLinks.map((link, i) => (
+              <a
+                key={link}
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-black text-white hover:text-primary transition-all group/link buoyant"
+              >
+                <Github className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="tracking-[0.2em]">
+                  {sourceLinks.length > 1 ? (i === 0 ? "FRONTEND" : "BACKEND") : "SOURCE CODE"}
+                </span>
+              </a>
+            ))}
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
